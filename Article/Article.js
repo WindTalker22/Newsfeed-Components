@@ -169,10 +169,10 @@ function articleCreator(data) {
 }
 
 
-const entryPoint = document.querySelector('.articles')
+
 data.map(function (currentValue) {
   let newArticle = articleCreator(currentValue);
-  entryPoint.appendChild(newArticle)
+  document.querySelector('.articles').appendChild(newArticle)
 })
 
 

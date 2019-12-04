@@ -23,14 +23,17 @@ let menuItems = [
 
 function menuComp(menuItems) {
   // Variable Declaration
-  const menuCont = document.querySelector('div');
-  const unOrdered = document.querySelector('ul');
+  const nav = document.createElement('nav')
+  const unOrdered = document.createElement('ul')
+  const header = document.querySelector('.header');
+  
 
   // Adding classes
-  menuCont.classList.add('menu')
+  nav.classList.add('menu')
 
   // Appending elements
-  menuCont.appendChild(unOrdered);
+  nav.appendChild(unOrdered)
+  header.appendChild(nav);
 
   // Looping through and appending children
   menuItems.forEach(element => {
@@ -38,13 +41,21 @@ function menuComp(menuItems) {
     listItems.textContent = element
     unOrdered.appendChild(listItems)
   });
-
+  
   const menubutt = document.querySelector('.menu-button')
   menubutt.addEventListener('click', () => {
-    menubutt.classList.toggle('menu--open')
+    nav.classList.toggle('menu--open')
+    console.log(menubutt)
   })
-  return menuCont
+  
+
+  
+
+
+  return header
 }
+menuComp(menuItems)
+
 
   // Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
   // Add those items to the <ul>
