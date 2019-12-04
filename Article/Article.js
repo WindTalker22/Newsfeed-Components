@@ -163,6 +163,13 @@ function articleCreator(data) {
     } else {
       spanner.textContent = 'close'
     }
+  // Stretch goal
+    if (spanner.textContent === 'close') {
+      spanner.addEventListener('click', () => {
+        divArt.style.display = 'none'
+      })
+    }
+
   });
 
   return divArt
