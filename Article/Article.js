@@ -112,3 +112,56 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+function articleCreator(data) {
+  // Variables
+  const divArt = document.createElement('div');
+  const head2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const pee1 = document.createElement('p');
+  const pee2 = document.createElement('p');
+  const pee3 = document.createElement('p');
+  const spanner = document.createElement('span');
+
+// Adding classes to elements
+  divArt.classList.add('article');
+  date.classList.add('date');
+  spanner.classList.add('expandButton');
+
+// Adding text content
+  head2.textContent = data.title
+  date.textContent = data.date
+  pee1.textContent = data.firstParagraph
+  pee2.textContent = data.secondParagraph
+  pee3.textContent = data.thirdParagraph
+  spanner.textContent = 'expand'
+
+
+// Appending children to parent div
+  divArt.append(head2, date, pee1, pee2, pee3, spanner);
+  
+// Adding eventListener to span
+  spanner.addEventListener('click', () => {
+    divArt.classList.toggle('article-open')
+    if (spanner.textContent !== 'expand') {
+      spanner === 'close'
+    }else{
+      spanner.textContent === 'expand'
+    }
+  });
+
+return divArt
+}
+
+
+const entryPoint = document.querySelector('.articles')
+data.map(function(currentValue) {
+  let newArticle = articleCreator(currentValue);
+  entryPoint.appendChild(newArticle)
+})
+
+
+
+
+
