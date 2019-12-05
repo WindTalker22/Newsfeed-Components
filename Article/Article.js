@@ -85,7 +85,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Does this work',
+    date: 'Dec 4th, 2019',
+    firstParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+    Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+    Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
+    secondParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+    Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+    Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+    Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+    Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +126,63 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+function articleCreator(data) {
+  // Variable Declarations
+  const divArt = document.createElement('div');
+  const head2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const pee1 = document.createElement('p');
+  const pee2 = document.createElement('p');
+  const pee3 = document.createElement('p');
+  const spanner = document.createElement('span');
+
+  // Adding classes to elements
+  divArt.classList.add('article');
+  date.classList.add('date');
+  spanner.classList.add('expandButton');
+
+  // Adding text content
+  head2.textContent = data.title
+  date.textContent = data.date
+  pee1.textContent = data.firstParagraph
+  pee2.textContent = data.secondParagraph
+  pee3.textContent = data.thirdParagraph
+  spanner.textContent = 'open'
+
+
+  // Appending children to parent div
+  divArt.append(head2, date, pee1, pee2, pee3, spanner);
+
+  // Adding eventListener to span
+  spanner.addEventListener('click', () => {
+    divArt.classList.toggle('article-open')
+    if (spanner.textContent !== 'open') {
+      spanner.textContent = 'open'
+    } else {
+      spanner.textContent = 'close'
+    }
+  // Stretch goal
+    if (spanner.textContent === 'close') {
+      spanner.addEventListener('click', () => {
+        divArt.style.display = 'none'
+      })
+    }
+
+  });
+
+  return divArt
+}
+
+
+
+data.map(function (currentValue) {
+  let newArticle = articleCreator(currentValue);
+  document.querySelector('.articles').appendChild(newArticle)
+})
+
+
+
+
+
